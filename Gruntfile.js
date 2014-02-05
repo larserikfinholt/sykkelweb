@@ -323,6 +323,14 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      //Azure deploy folder
+      deploy: {
+        files: [
+ // makes all src relative to cwd
+      {expand: true, cwd: 'dist/', src: ['**'], dest: '../azure/'},
+
+            ]
+      },
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
