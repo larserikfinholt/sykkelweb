@@ -1,0 +1,67 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <form class="form-horizontal" ng-show="!userSet">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Contact details</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Name</label>
+                    <div class="col-md-4">
+                        <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" ng-model="currentUser.name">
+                        <span class="help-block">help</span>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Text Input</label>
+                    <div class="col-md-4">
+                        <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" ng-model="currentUser.phone">
+                        <span class="help-block">help</span>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <!--<label class="col-md-4 control-label" for="singlebutton">Save</label>-->
+                    <div class="col-md-4">
+                        <button id="singlebutton" name="singlebutton" class="btn " ng-click="saveSettings()">Cancel</button>
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" ng-click="saveSettings()">Save</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="jumbotron" ng-show="userSet">
+    <h1>Hello <span ng-show="currentUser">{{ currentUser.name }}</span>!</h1>
+    <p class="muted"><a ng-click="saveSettings()">Not {{currentUser.name}}?</a></p>
+    <p class="lead">
+        <img src="images/yeoman.png" alt="I'm Yeoman"><br>
+       {{status}} 
+    </p>
+    <p><a class="btn btn-lg btn-success" ng-click="start()">Start</a></p>
+    <p><a class="btn btn-lg btn-danger" ng-click="stop()">Stop</a></p>
+    <p><a class="btn btn-sm btn-info" ng-click="addPosition(30,30)">Debug add position</a></p>
+
+</div>
+
+<table class="table">
+    <tr ng-repeat="pos in positions">
+        <td>{{pos.time | date:'HH:mm:ss'}}</td>
+        <td>{{pos.lat}},{{pos.lng}}</td>
+        <td>{{pos.saved}}</td>
+    </tr>
+</table>
+<div class="footer">
+    <p>Check out the Andoid app</p>
+</div>

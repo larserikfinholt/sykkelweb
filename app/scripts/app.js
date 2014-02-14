@@ -20,6 +20,10 @@ angular.module('sykkelwebApp', [
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
       })
+      .when('/tryit', {
+          templateUrl: 'partials/tryit',
+          controller: 'TryitCtrl'
+      })
       .when('/settings', {
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',

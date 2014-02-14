@@ -31,6 +31,7 @@ require('./lib/config/dummydata');
 require('./lib/config/passport')();
 
 var app = express();
+app.use(express.bodyParser());
 
 // Express settings
 require('./lib/config/express')(app);
