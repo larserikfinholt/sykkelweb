@@ -47,18 +47,43 @@
     <p class="muted"><a ng-click="saveSettings()">Not {{currentUser.name}}?</a></p>
     <p class="lead">
         <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-       {{status}} 
+        {{status}}
     </p>
-    <p><a class="btn btn-lg btn-success" ng-click="start()">Start</a></p>
-    <p><a class="btn btn-lg btn-danger" ng-click="stop()">Stop</a></p>
-    <p><a class="btn btn-sm btn-info" ng-click="addPosition(30,30)">Debug add position</a></p>
+    <p><a class="btn btn-lg btn-success" ng-click="start()" ng-show="status!='Watching you...'">Start</a></p>
+    <p><a class="btn btn-lg btn-danger" ng-click="stop()" ng-show="status=='Watching you...'">Stop</a></p>
+    <p><a class="btn btn-sm btn-info" ng-click="addPosition(30,30)" ng-show="false">Debug add position</a></p>
 
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <google-map center="latestPosition.coords" zoom="zoom"></google-map>
+
+
+    </div>
+    <div class="col-xs-6">
+        <div class="well well-sm" ng-show="latestPosition">
+            <ul>
+                <li>Lat:{{latestPosition.coords.latitude}}</li>
+                <li>Long:{{latestPosition.coords.longitude}}</li>
+                <li>Speed:{{latestPosition.coords.speed}}</li>
+                <li>Accuracy:{{latestPosition.coords.accuracy}}</li>
+                <li>Time:{{latestPosition.timestamp | date: 'HH:mm:ss'}}</li>
+            </ul>
+        </div>
+        <div class="well well-sm" ng-show="latestError">
+            <ul>
+                <li>Code:{{latestError.code}}</li>
+                <li>Message:{{latestError.message}}</li>
+                <li>Time:{{latestError.timestamp | date: 'HH:mm:ss'}}</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <table class="table">
     <tr ng-repeat="pos in positions">
-        <td>{{pos.time | date:'HH:mm:ss'}}</td>
-        <td>{{pos.lat}},{{pos.lng}}</td>
+        <td>{{pos.timestamp | date: 'HH:mm:ss'}}</td>
+        <td>{{pos.coords.latitude}},{{pos.coords.latitude}}</td>
         <td>{{pos.saved}}</td>
     </tr>
 </table>

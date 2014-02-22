@@ -1,13 +1,9 @@
 'use strict';
 
 angular.module('sykkelwebApp')
-    .controller('MainCtrl', function ($scope, TripService, $http) {
+    .controller('MainCtrl', function ($scope, TripDataService) {
 
-        $http.get('/api/awesomeThings').success(function (awesomeThings) {
-            $scope.awesomeThings = awesomeThings;
-        });
-        TripService.getLatest().success(function (trips) {
-            //$http.get('/api/trips').success(function (trips) {
+        TripDataService.getLatest().then(function (trips) {
             $scope.trips = trips;
         });
 

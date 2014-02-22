@@ -2,27 +2,22 @@
 
 describe('Controller: TryitCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('sykkelwebApp'));
+    // load the controller's module
+    beforeEach(module('sykkelwebApp'));
 
-  var TryitCtrl,
-    scope,
-    $httpBackend;
+    var TryitCtrl,
+        scope;
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    $httpBackend.expectGET('/api/awesomeThings')
-      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
-    scope = $rootScope.$new();
-    TryitCtrl = $controller('TryitCtrl', {
-      $scope: scope
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function ($controller, $rootScope) {
+        
+        scope = $rootScope.$new();
+        TryitCtrl = $controller('TryitCtrl', {
+            $scope: scope
+        });
+    }));
+
+    it('should attach a list of awesomeThings to the scope', function () {
+        expect(scope.status).toBe('click to start');
     });
-  }));
-
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings).toBeUndefined();
-    $httpBackend.flush();
-    expect(scope.awesomeThings.length).toBe(4);
-  });
 });
